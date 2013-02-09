@@ -7,10 +7,8 @@ import javax.jws.WebService;
 
 import edu.upc.io.seleccion.domain.Prueba;
 
-@WebService
 public interface PruebaService {
 
-	@WebResult(name="getAll")
 	public List<Prueba> getAll();
 	
 }

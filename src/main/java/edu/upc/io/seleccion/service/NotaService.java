@@ -7,10 +7,8 @@ import javax.jws.WebService;
 
 import edu.upc.io.seleccion.domain.Nota;
 
-@WebService
 public interface NotaService {
 
-	@WebResult(name="getAll")
 	List<Nota> getAll();
 
 }

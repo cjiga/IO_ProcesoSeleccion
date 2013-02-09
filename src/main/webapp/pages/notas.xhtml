@@ -50,6 +50,67 @@
 			</p:dataTable>
 
 		</h:form>
+
+		<h:form id="frmNuevo">
+			<p:dialog header="Nueva Nota" widgetVar="dlgNuevo"
+				resizable="false" id="dlgNuevo" showEffect="fade"
+				hideEffect="explode" modal="false">
+
+				<p:growl id="growlNuevo" showDetail="true" sticky="true" />
+
+				<h:panelGrid id="pgNuevo" columns="2" cellpadding="4"
+					style="margin:0 auto;">
+
+					<h:outputText value="Descripción:" />
+					<p:inputText value="#{generoMB.genero.descripcion}" />
+
+					<h:outputText value="Estado:" />
+					<p:selectOneMenu id="estado" value="#{generoMB.genero.estado}">
+						<f:selectItem itemLabel="--Selecciones--" itemValue="" />
+						<f:selectItem itemLabel="Activo" itemValue="1" />
+						<f:selectItem itemLabel="Inactivo" itemValue="0" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<p:separator id="separator" />
+				<p:commandButton update=":lstGenero:datatable,growlNuevo,pgNuevo "
+					actionListener="#{generoMB.insertar}" oncomplete="dlgNuevo.hide()"
+					value=" Guardar" icon="icon-add" title="Guardar" />
+				<p:commandButton update=":lstGenero" oncomplete="dlgNuevo.hide()"
+					value="Cancelar" icon="icon-add" title="Cancelarr" />
+			</p:dialog>
+		</h:form>
+
+		<h:form id="frmEditar">
+			<p:dialog header="Editar Genero" widgetVar="dlgEditar"
+				resizable="false" id="dlgEditar" showEffect="fade"
+				hideEffect="explode" modal="false">
+
+				<p:growl id="growlEditar" showDetail="true" sticky="true" />
+
+				<h:panelGrid id="pgEditar" columns="2" cellpadding="4"
+					style="margin:0 auto;">
+
+					<h:outputText value="Descripción:" />
+					<p:inputText value="#{generoMB.genero.descripcion}" />
+
+					<h:outputText value="Estado:" />
+					<p:selectOneMenu id="estado" value="#{generoMB.genero.estado}">
+						<f:selectItem itemLabel="--Selecciones--" itemValue="" />
+						<f:selectItem itemLabel="Activo" itemValue="1" />
+						<f:selectItem itemLabel="Inactivo" itemValue="0" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<p:separator id="separator" />
+				<p:commandButton
+					update=":lstGenero:datatable,growlEditar,dlgEditar "
+					actionListener="#{generoMB.editar}" oncomplete="dlgEditar.hide()"
+					value=" Editar" icon="icon-add" title="Editar" />
+				<p:commandButton update=":lstGenero" oncomplete="dlgEditar.hide()"
+					value="Cancelar" icon="icon-add" title="Cancelarr" />
+			</p:dialog>
+		</h:form>
+
+
 		<h:form id="frmEliminar">
 			<p:dialog id="dlgEliminar" header="Eliminar Genero" severity="alert"
 				widgetVar="dlgEliminar" showEffect="explode" hideEffect="explode">
