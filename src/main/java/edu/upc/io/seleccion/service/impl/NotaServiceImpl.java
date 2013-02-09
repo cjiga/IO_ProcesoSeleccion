@@ -15,7 +15,7 @@ import edu.upc.io.seleccion.domain.Nota;
 import edu.upc.io.seleccion.domain.Prueba;
 import edu.upc.io.seleccion.service.NotaService;
 
-@Service("notaService")
+@Service
 public class NotaServiceImpl implements NotaService{
 
 protected static Logger logger = Logger.getLogger("service");
@@ -23,7 +23,8 @@ protected static Logger logger = Logger.getLogger("service");
 	@Autowired
 	private NotaDao notaDao;
 	
-	@Override
+	
+	@WebResult(name = "getAll")
 	public List<Nota> getAll() {		
 		return notaDao.getAll();
 	}

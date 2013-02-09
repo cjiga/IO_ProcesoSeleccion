@@ -7,15 +7,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.upc.io.seleccion.dao.NotaDao;
 import edu.upc.io.seleccion.domain.Nota;
 import edu.upc.io.seleccion.domain.Prueba;
 
+@Repository
 public class NotaDaoImpl implements NotaDao{
 
-	@Override
 	public int saveOrUpdate(Nota nota) {
 		Session session = sessionFactory.getCurrentSession();
 		int var=0;

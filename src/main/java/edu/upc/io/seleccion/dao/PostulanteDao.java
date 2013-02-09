@@ -4,8 +4,6 @@ import java.util.List;
 
 import edu.upc.io.seleccion.domain.Postulante;
 
-
-
 public interface PostulanteDao {
 	
 	public int save(Postulante postulante);
