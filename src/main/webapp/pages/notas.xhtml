@@ -11,7 +11,67 @@
 	</h:head>
 
 	<ui:define name="content">
+		<h:form>
+			<p:commandButton value="Nueva Nota" icon="ui-icon-document"
+				actionListener="#{notaController.prepararInsertar}"
+				update=":frmNuevo:pgNuevo" oncomplete="dlgNuevo.show()" />
+		</h:form>
 
+		<br />
+
+		<h:form id="frmLista">
+			<p:dataTable id="datatable" var="g" value="#{notaController.lstNota}">
+				<p:column headerText="Postulante">
+					<h:outputText value="#{g.postulante.descripcion}" />
+				</p:column>
+
+				<p:column headerText="Prueba">
+					<h:outputText value="#{g.prueba.descripcion}" />
+				</p:column>
+				
+				<p:column headerText="Nota">
+					<h:outputText value="#{g.nota}" />
+				</p:column>
+				
+				<p:column style="width:10%; text-align:center">
+					<p:commandButton update=":frmLista,:frmEditar:dlgEditar"
+						oncomplete="dlgEditar.show()" icon="ui-icon-pencil" title="Editar">
+						<f:setPropertyActionListener value="#{g}"
+							target="#{notaController.nota}" />
+					</p:commandButton>					
+					<p:commandButton update=":frmLista,:frmEliminar:dlgEliminar"
+						oncomplete="dlgEliminar.show()" icon="ui-icon-trash"
+						title="Eliminar" >
+						<f:setPropertyActionListener value="#{g}"
+							target="#{notaController.nota}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+		<h:form id="frmEliminar">
+			<p:dialog id="dlgEliminar" header="Eliminar Genero" severity="alert"
+				widgetVar="dlgEliminar" showEffect="explode" hideEffect="explode">
+				<p:growl id="growlEliminar" showDetail="true" sticky="true" />
+				<h:panelGrid id="displayconfirSucursal" columns="1" cellpadding="5">
+					<h:panelGrid columns="2">
+						<h:outputLabel value="¿Esta seguro de eliminar la nota?" />
+					</h:panelGrid>
+					<h:panelGroup>
+						<p:commandButton id="confirm" value="Si"
+							update=":frmLista:datatable,growlEliminar"
+							oncomplete="dlgEliminar.hide()"
+							actionListener="#{notaController.eliminar}">
+						</p:commandButton>	
+						<p:commandButton id="decline" value="No"
+							onclick="dlgEliminar.hide()" type="button" />
+					</h:panelGroup>
+				</h:panelGrid>
+
+
+			</p:dialog>
+		</h:form>
 		
 	</ui:define>
 </ui:composition>
