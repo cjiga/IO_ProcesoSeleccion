@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Venta de entradas</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+	<h:outputStylesheet name="style.css" library="css" />
+</h:head>
+
+<body>
+	<f:view>
+		<div id="container" class="container">
+			<!-- Begin headerbg -->
+			<div id="header" class="row">
+
+				<ui:insert name="header">
+					<ui:include src="/template/layaout/header.xhtml" />
+				</ui:insert>
+			</div>
+			<!-- End headerbg -->
+
+			<div id="content" class="row">
+				<p:layout style="min-width:400px;min-height:554px;" id="layout">
+					<p:layoutUnit position="west" resizable="true" size="160" minSize="160" maxSize="200">
+						<ui:include src="/template/layaout/menu.xhtml" />
+					</p:layoutUnit>
+					<p:layoutUnit position="center">
+						<ui:insert name="content"></ui:insert>
+					</p:layoutUnit>
+				</p:layout>
+			</div>
+
+			<div id="footer" class="row">
+				<ui:insert name="footer">
+					<ui:include src="/template/layaout/footer.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
+	</f:view>
+</body>
+</html>
+
+
+

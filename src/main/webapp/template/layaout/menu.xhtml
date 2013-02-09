@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form prependId="false">
+		<p:panelMenu style="width:150px">
+			<p:submenu label="Mantemiento">
+				<p:menuitem value="Postulante" ajax="false"
+					action="/pages/postulante" icon="ui-icon-document" />
+				<p:menuitem value="Cargo" ajax="false" action="/pages/cargo"
+					icon="ui-icon-document" />
+				<p:menuitem value="Prueba" ajax="false" action="/pages/prueba"
+					icon="ui-icon-document" />
+			</p:submenu>
+			<p:submenu label="Resultados">
+				<p:menuitem value="Ingresar Notas" ajax="false"
+					action="/pages/notas" icon="ui-icon-pencil" />
+				<p:menuitem value="Resultados" ajax="false"
+					action="/pages/resultados" icon="ui-icon-signal" />
+			</p:submenu>
+		</p:panelMenu>
+
+	</h:form>
+</ui:composition>
+
+
+
+
