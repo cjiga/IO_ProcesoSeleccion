@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `postulante`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `postulante` (
-  `idpostulante` bigint(20) NOT NULL,
+  `idpostulante` bigint(20) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idpostulante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -103,10 +103,10 @@ DROP TABLE IF EXISTS `prueba`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prueba` (
-  `idprueba` bigint(20) NOT NULL,
+  `idprueba` bigint(20) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idprueba`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,6 +115,7 @@ CREATE TABLE `prueba` (
 
 LOCK TABLES `prueba` WRITE;
 /*!40000 ALTER TABLE `prueba` DISABLE KEYS */;
+INSERT INTO `prueba` VALUES (1,'Prueba psicotècnica'),(2,'Prueba de conocimiento'),(3,'Prueba de interes vocacional');
 /*!40000 ALTER TABLE `prueba` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +127,7 @@ DROP TABLE IF EXISTS `puesto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `puesto` (
-  `idpuesto` bigint(20) NOT NULL,
+  `idpuesto` bigint(20) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(150) DEFAULT NULL,
   `preferencia` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`idpuesto`)
@@ -153,6 +154,8 @@ CREATE TABLE `puntaje` (
   `idpostulante` bigint(20) NOT NULL,
   `idpuesto` bigint(20) NOT NULL,
   `puntaje` decimal(10,0) NOT NULL,
+  `y` bigint(20) DEFAULT NULL,
+  `z` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`idpostulante`,`idpuesto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -175,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-09  1:47:39
+-- Dump completed on 2013-02-09  2:26:33
