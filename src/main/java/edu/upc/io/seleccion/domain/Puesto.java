@@ -1,37 +1,64 @@
 package edu.upc.io.seleccion.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
+import java.util.List;
 
+
+/**
+ * The persistent class for the puesto database table.
+ * 
+ */
 @Entity
-@Table(name="puesto")
-public class Puesto {
-	
+public class Puesto implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
-	private Integer idPuesto;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String idpuesto;
+
 	private String descripcion;
-	private Integer preferencia;
-	
-	public Integer getIdPuesto() {
-		return idPuesto;
+
+	private BigInteger preferencia;
+
+	//bi-directional many-to-one association to Peso
+	@OneToMany(mappedBy="puesto")
+	private List<Peso> pesos;
+
+	public Puesto() {
 	}
-	public void setIdPuesto(Integer idPuesto) {
-		this.idPuesto = idPuesto;
+
+	public String getIdpuesto() {
+		return this.idpuesto;
 	}
+
+	public void setIdpuesto(String idpuesto) {
+		this.idpuesto = idpuesto;
+	}
+
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Integer getPreferencia() {
-		return preferencia;
+
+	public BigInteger getPreferencia() {
+		return this.preferencia;
 	}
-	public void setPreferencia(Integer preferencia) {
+
+	public void setPreferencia(BigInteger preferencia) {
 		this.preferencia = preferencia;
 	}
+
+	public List<Peso> getPesos() {
+		return this.pesos;
+	}
+
+	public void setPesos(List<Peso> pesos) {
+		this.pesos = pesos;
+	}
+
 }

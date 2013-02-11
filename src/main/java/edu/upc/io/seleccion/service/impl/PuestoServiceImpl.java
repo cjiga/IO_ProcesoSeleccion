@@ -2,18 +2,21 @@ package edu.upc.io.seleccion.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import edu.upc.io.seleccion.dao.PuestoDao;
+import edu.upc.io.seleccion.dao.impl.PuestoDaoImpl;
 import edu.upc.io.seleccion.domain.Postulante;
 import edu.upc.io.seleccion.domain.Puesto;
 import edu.upc.io.seleccion.service.PuestoService;
 
+
 public class PuestoServiceImpl implements PuestoService{
 	
-	@Autowired
+	
 	private PuestoDao puestoDao;
 
+	public PuestoServiceImpl(){
+		puestoDao=new PuestoDaoImpl();
+	}
 	public int save(Puesto puesto) {
 		// TODO Auto-generated method stub
 		return puestoDao.save(puesto);
@@ -38,5 +41,11 @@ public class PuestoServiceImpl implements PuestoService{
 		// TODO Auto-generated method stub
 		return puestoDao.getAll();
 	}
+
+	public void setPuestoDao(PuestoDao puestoDao) {
+		this.puestoDao = puestoDao;
+	}
+	
+	
 
 }

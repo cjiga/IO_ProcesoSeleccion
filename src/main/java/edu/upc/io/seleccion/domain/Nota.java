@@ -1,35 +1,67 @@
 package edu.upc.io.seleccion.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
+
+/**
+ * The persistent class for the nota database table.
+ * 
+ */
 @Entity
-@Table(name="nota")
-public class Nota {
+public class Nota implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)
-	@JoinColumn(name="idPostulante")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String idnota;
+
+	private BigDecimal puntaje;
+
+	//bi-directional many-to-one association to Postulante
+	@ManyToOne
+	@JoinColumn(name="idpostulante")
 	private Postulante postulante;
-	
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)
-	@JoinColumn(name="idPrueba")
+
+	//bi-directional many-to-one association to Prueba
+	@ManyToOne
+	@JoinColumn(name="idprueba")
 	private Prueba prueba;
 
-	private double nota;
-	
-	public Postulante getPostulante() {
-		return postulante;
+	public Nota() {
 	}
+
+	public String getIdnota() {
+		return this.idnota;
+	}
+
+	public void setIdnota(String idnota) {
+		this.idnota = idnota;
+	}
+
+	public BigDecimal getPuntaje() {
+		return this.puntaje;
+	}
+
+	public void setPuntaje(BigDecimal puntaje) {
+		this.puntaje = puntaje;
+	}
+
+	public Postulante getPostulante() {
+		return this.postulante;
+	}
+
 	public void setPostulante(Postulante postulante) {
 		this.postulante = postulante;
 	}
+
 	public Prueba getPrueba() {
-		return prueba;
+		return this.prueba;
 	}
+
 	public void setPrueba(Prueba prueba) {
 		this.prueba = prueba;
 	}
+
 }

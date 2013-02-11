@@ -2,17 +2,18 @@ package edu.upc.io.seleccion.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import edu.upc.io.seleccion.dao.PostulanteDao;
+import edu.upc.io.seleccion.dao.impl.PostulanteDaoImpl;
 import edu.upc.io.seleccion.domain.Postulante;
 import edu.upc.io.seleccion.service.PostulanteService;
 
-@Service("postulanteService")
 public class PostulanteServiceImpl implements PostulanteService{
-	@Autowired
+	
 	private PostulanteDao postulanteDao;
+	
+	public PostulanteServiceImpl(){
+		postulanteDao=new PostulanteDaoImpl();
+	}
 
 	public int save(Postulante postulante) {
 		// TODO Auto-generated method stub
@@ -36,6 +37,15 @@ public class PostulanteServiceImpl implements PostulanteService{
 
 	public List<Postulante> getAll() {
 		// TODO Auto-generated method stub
+		System.out.println("Service-Get All");
 		return postulanteDao.getAll();
 	}
+
+	public void setPostulanteDao(PostulanteDao postulanteDao) {
+		this.postulanteDao = postulanteDao;
+	}
+	
+	
+
+	
 }

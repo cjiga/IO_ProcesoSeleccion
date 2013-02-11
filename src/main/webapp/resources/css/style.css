@@ -52,3 +52,8 @@ body {
 	padding-top:  0px;
 	padding-bottom: 0px;
 }
+
+
+.centered {
+    margin: 0px auto;
+}

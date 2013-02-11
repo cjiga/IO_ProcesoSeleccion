@@ -11,35 +11,41 @@
 	</h:head>
 
 	<ui:define name="content">
-		<h:form id="btnNuevo">
-			<p:commandButton value="Nuevo Postulante" icon="ui-icon-document"
-				actionListener="#{postulanteBean.prepararInsertar}"
+
+
+		<h:form>
+			<p:commandButton value="Nuevo Puesto" icon="ui-icon-document"
+				actionListener="#{puestoBean.prepararInsertar}"
 				update=":frmNuevo:pgNuevo" oncomplete="dlgNuevo.show()" />
 		</h:form>
 
 		<br />
 
-		<h:form id="lstPostulante">
-			<p:dataTable id="datatable" var="g" value="#{postulanteBean.lstPostulante}">
+		<h:form id="lstPuesto">
+			<p:dataTable id="datatable" var="g" value="#{puestoBean.lstPuesto}">
 				<p:column headerText="ID">
-					<h:outputText value="#{g.idpostulante}" />
+					<h:outputText value="#{g.idpuesto}" />
 				</p:column>
 
-				<p:column headerText="DESCRIPCION" >
+				<p:column headerText="DESCRIPCION">
 					<h:outputText value="#{g.descripcion}" />
 				</p:column>
 
+				<p:column headerText="PREFERENCIA">
+					<h:outputText value="#{g.preferencia}" />
+				</p:column>
+
 				<p:column style="width:10%; text-align:center">
-					<p:commandButton update=":lstPostulante,:frmEditar:dlgEditar"
+					<p:commandButton update=":lstPuesto,:frmEditar:dlgEditar"
 						oncomplete="dlgEditar.show()" icon="ui-icon-pencil" title="Editar">
 						<f:setPropertyActionListener value="#{g}"
-							target="#{postulanteBean.postulante}" />
+							target="#{puestoBean.puesto}" />
 					</p:commandButton>					
-					<p:commandButton update=":lstPostulante,:frmEliminar:dlgEliminar"
+					<p:commandButton update=":lstPuesto,:frmEliminar:dlgEliminar"
 						oncomplete="dlgEliminar.show()" icon="ui-icon-trash"
 						title="Eliminar" >
 						<f:setPropertyActionListener value="#{g}"
-							target="#{postulanteBean.postulante}" />
+							target="#{puestoBean.puesto}" />
 					</p:commandButton>
 				</p:column>
 
@@ -48,7 +54,7 @@
 		</h:form>
 
 		<h:form id="frmNuevo">
-			<p:dialog header="Nuevo Postulante" widgetVar="dlgNuevo"
+			<p:dialog header="Nuevo Puesto" widgetVar="dlgNuevo"
 				resizable="false" id="dlgNuevo" showEffect="fade"
 				hideEffect="explode" modal="false">
 
@@ -58,21 +64,25 @@
 					style="margin:0 auto;">
 
 					<h:outputText value="Descripción:" />
-					<p:inputText value="#{postulanteBean.postulante.descripcion}" />
+					<p:inputText value="#{puestoBean.puesto.descripcion}" />
 
-					
+					<h:outputText value="Preferencia:" />
+					<p:selectOneMenu id="preferencia" value="#{puestoBean.puesto.preferencia}">
+						<f:selectItem itemLabel="Si" itemValue="1" />
+						<f:selectItem itemLabel="No" itemValue="0" />
+					</p:selectOneMenu>
 				</h:panelGrid>
 				<p:separator id="separator" />
-				<p:commandButton update=":lstPostulante:datatable,growlNuevo,pgNuevo "
-					action="#{postulanteBean.insertar}" oncomplete="dlgNuevo.hide()"
+				<p:commandButton update=":lstPuesto:datatable,growlNuevo,pgNuevo "
+					actionListener="#{puestoBean.insertar}" oncomplete="dlgNuevo.hide()"
 					value=" Guardar" icon="icon-add" title="Guardar" />
-				<p:commandButton update=":lstPostulante" oncomplete="dlgNuevo.hide()"
+				<p:commandButton update=":lstPuesto" oncomplete="dlgNuevo.hide()"
 					value="Cancelar" icon="icon-add" title="Cancelar" />
 			</p:dialog>
 		</h:form>
 
 		<h:form id="frmEditar">
-			<p:dialog header="Editar Postulante" widgetVar="dlgEditar"
+			<p:dialog header="Editar Puesto" widgetVar="dlgEditar"
 				resizable="false" id="dlgEditar" showEffect="fade"
 				hideEffect="explode" modal="false">
 
@@ -82,33 +92,38 @@
 					style="margin:0 auto;">
 
 					<h:outputText value="Descripción:" />
-					<p:inputText value="#{postulanteBean.postulante.descripcion}" />
+					<p:inputText value="#{puestoBean.puesto.descripcion}" />
 
-					</h:panelGrid>
+					<h:outputText value="Preferencia:" />
+					<p:selectOneMenu id="preferencia" value="#{puestoBean.puesto.preferencia}">
+						<f:selectItem itemLabel="Si" itemValue="1" />
+						<f:selectItem itemLabel="No" itemValue="0" />
+					</p:selectOneMenu>
+				</h:panelGrid>
 				<p:separator id="separator" />
 				<p:commandButton
-					update=":lstPostulante:datatable,growlEditar,dlgEditar "
-					action="#{postulanteBean.editar}" oncomplete="dlgEditar.hide()"
+					update=":lstPuesto:datatable,growlEditar,dlgEditar "
+					actionListener="#{puestoBean.editar}" oncomplete="dlgEditar.hide()"
 					value=" Editar" icon="icon-add" title="Editar" />
-				<p:commandButton update=":lstPostulante" oncomplete="dlgEditar.hide()"
+				<p:commandButton update=":lstPuesto" oncomplete="dlgEditar.hide()"
 					value="Cancelar" icon="icon-add" title="Cancelarr" />
 			</p:dialog>
 		</h:form>
 
 
 		<h:form id="frmEliminar">
-			<p:dialog id="dlgEliminar" header="Eliminar Postulante" severity="alert"
+			<p:dialog id="dlgEliminar" header="Eliminar Puesto" severity="alert"
 				widgetVar="dlgEliminar" showEffect="explode" hideEffect="explode">
 				<p:growl id="growlEliminar" showDetail="true" sticky="true" />
-				<h:panelGrid id="displayconfirPostulante" columns="1" cellpadding="5">
+				<h:panelGrid id="displayconfirPuesto" columns="1" cellpadding="5">
 					<h:panelGrid columns="2">
-						<h:outputLabel value="¿Esta seguro de eliminar el postulante?" />
+						<h:outputLabel value="¿Esta seguro de eliminar el puesto?" />
 					</h:panelGrid>
 					<h:panelGroup>
 						<p:commandButton id="confirm" value="Si"
-							update=":lstPostulante:datatable,growlEliminar"
+							update=":lstPuesto:datatable,growlEliminar"
 							oncomplete="dlgEliminar.hide()"
-							action="#{postulanteBean.eliminar}">
+							actionListener="#{puestoBean.eliminar}">
 						</p:commandButton>	
 						<p:commandButton id="decline" value="No"
 							onclick="dlgEliminar.hide()" type="button" />

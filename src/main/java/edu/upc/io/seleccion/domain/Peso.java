@@ -1,40 +1,67 @@
 package edu.upc.io.seleccion.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
+
+/**
+ * The persistent class for the peso database table.
+ * 
+ */
 @Entity
-@Table(name="peso")
-public class Peso {
+public class Peso implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)
-	@JoinColumn(name="idPuesto")
-	private Puesto puesto;
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)
-	@JoinColumn(name="idPrueba")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String idPeso;
+
+	private BigDecimal porcentaje;
+
+	//bi-directional many-to-one association to Prueba
+	@ManyToOne
+	@JoinColumn(name="idprueba")
 	private Prueba prueba;
 
-	private double peso;
-	
-	public Puesto getPuesto() {
-		return puesto;
+	//bi-directional many-to-one association to Puesto
+	@ManyToOne
+	@JoinColumn(name="idpuesto")
+	private Puesto puesto;
+
+	public Peso() {
 	}
-	public void setPuesto(Puesto puesto) {
-		this.puesto = puesto;
+
+	public String getIdPeso() {
+		return this.idPeso;
 	}
+
+	public void setIdPeso(String idPeso) {
+		this.idPeso = idPeso;
+	}
+
+	public BigDecimal getPorcentaje() {
+		return this.porcentaje;
+	}
+
+	public void setPorcentaje(BigDecimal porcentaje) {
+		this.porcentaje = porcentaje;
+	}
+
 	public Prueba getPrueba() {
-		return prueba;
+		return this.prueba;
 	}
+
 	public void setPrueba(Prueba prueba) {
 		this.prueba = prueba;
 	}
-	public double getPeso() {
-		return peso;
+
+	public Puesto getPuesto() {
+		return this.puesto;
 	}
-	public void setPeso(double peso) {
-		this.peso = peso;
+
+	public void setPuesto(Puesto puesto) {
+		this.puesto = puesto;
 	}
+
 }

@@ -1,30 +1,53 @@
 package edu.upc.io.seleccion.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
 
+
+/**
+ * The persistent class for the postulante database table.
+ * 
+ */
 @Entity
-@Table(name="postulante")
-public class Postulante {
+public class Postulante implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
-	private Integer idPostulante;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String idpostulante;
+
 	private String descripcion;
 
-	public Integer getIdPostulante() {
-		return idPostulante;
+	//bi-directional many-to-one association to Nota
+	@OneToMany(mappedBy="postulante")
+	private List<Nota> notas;
+
+	public Postulante() {
 	}
-	public void setIdPostulante(Integer idPostulante) {
-		this.idPostulante = idPostulante;
+
+	public String getIdpostulante() {
+		return this.idpostulante;
 	}
+
+	public void setIdpostulante(String idpostulante) {
+		this.idpostulante = idpostulante;
+	}
+
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public List<Nota> getNotas() {
+		return this.notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
 }

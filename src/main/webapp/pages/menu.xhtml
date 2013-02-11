@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/template.xhtml">
 
 	<h:head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -12,13 +13,13 @@
 	<ui:define name="content">
 
 
-		<p:carousel id="tabsCarousel" numVisible="1"
-			itemStyle="height:200px;width:600px;" effect="easeInStrong">
-			<p:tab title="Godfather Part I">
-				<h:panelGrid columns="2" cellpadding="10">
-					<p:graphicImage value="/resources/img/seleccion.jpg" />
-					<h:outputText
-						value="CASO DE ESTUDIO:  El problema abordado en el presente trabajo va dirigido al área de Recursos humanos 
+		<p:tabView id="tabView">
+			<p:tab id="tab1" title="CASO DE ESTUDIO">
+				<h:panelGrid columns="1" cellpadding="10">
+					
+					<p:graphicImage id="tab1Img"  value="/resources/img/seleccion.jpg" />
+					<h:outputText style="font-weight:bold"
+						value="El problema abordado en el presente trabajo va dirigido al área de Recursos humanos 
 						de la empresas, específicamente a los procesos de Selección de Personal, sobre todo a aquellas empresas que 
 						requieren la contratación de un gran número de trabajadores para perfiles similares, por lo que se pretende 
 						disminuir el tiempo que se necesita para realizar la selección, optimizando los criterios que conllevan a una 
@@ -26,25 +27,40 @@
 						un data center de RRHH." />
 				</h:panelGrid>
 			</p:tab>
-			<p:tab title="Godfather Part II">
-				<h:panelGrid columns="2" cellpadding="10">
-					
-					<h:outputText
-						value="DEFINICIÓN DEL PROBLEMA: Los procesos de selección están necesariamente vinculados a los objetivos y 
+			<p:tab id="tab2" title="DEFINICIÓN DEL PROBLEMA">
+				<h:panelGrid columns="1" cellpadding="10">
+					<p:graphicImage id="tab2Img" value="/resources/img/seleccion.jpg" />
+					<h:outputText style="font-weight:bold"
+						value="Los procesos de selección están necesariamente vinculados a los objetivos y 
 						estrategias de las organizaciones, por lo que el primer paso que se debe dar al momento de comenzar un proceso 
 						de selección es la planificación, y el éxito depende de que se realicen correctamente todas las fases, 
 						entre las cuales la toma de decisiones adecuadas también cumple un rol de suma importancia." />
 				</h:panelGrid>
 			</p:tab>
-			<p:tab title="Godfather Part III">
-				<h:panelGrid columns="2" cellpadding="10">
-					
-					<h:outputText
-						value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
-				Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+			<p:tab id="tab3" title="APLICACIÓN EN EMPRESAS">
+				<h:panelGrid columns="1" cellpadding="10">
+					<p:graphicImage id="tab3Img" value="/resources/img/seleccion.jpg" />
+					<h:outputText style="font-weight:bold"
+						value="Procesos de selección, evaluación y promoción de personal; consiste en la administración de recursos 
+						humanos, individualmente en las fases de selección, evaluación y promoción del personal de una empresa. Combinando 
+						criterios cuantitativos como cualitativos para la toma de decisiones, basada en juicios y evaluaciones hechas por 
+						los propios decisores, por lo que se hace aplicable en cualquier empresa y en cualquier área de trabajo de la 
+						misma." />
 				</h:panelGrid>
 			</p:tab>
-		</p:carousel>
+			<p:tab id="tab4" title="OBJETIVOS Y ALCANCE">
+				<h:panelGrid columns="1" cellpadding="10">
+					<p:graphicImage id="tab4Img" value="/resources/img/seleccion.jpg" />
+					<h:outputText style="font-weight:bold" escape="false"
+						value="1.- Maximizar la contribución total de un proceso de reclutamiento.&lt;br/&gt; 
+								2.- Jerarquización de los candidatos basada en los puntajes obtenidos y asignados.&lt;br/&gt; 
+								3.- Depurar con mayor precisión los candidatos que desde un inicio no cumplen con los requerimientos mínimos.&lt;br/&gt; 
+								4.- Descubrir y analizar el costo beneficio del uso de la tecnología.&lt;br/&gt; 
+								5.- Tomar decisiones.  " />
+				</h:panelGrid>
+			</p:tab>
+
+		</p:tabView>
 
 	</ui:define>
 </ui:composition>

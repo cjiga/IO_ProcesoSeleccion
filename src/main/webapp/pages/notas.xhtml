@@ -13,14 +13,14 @@
 	<ui:define name="content">
 		<h:form>
 			<p:commandButton value="Nueva Nota" icon="ui-icon-document"
-				actionListener="#{notaController.prepararInsertar}"
+				actionListener="#{notaBean.prepararInsertar}"
 				update=":frmNuevo:pgNuevo" oncomplete="dlgNuevo.show()" />
 		</h:form>
 
 		<br />
 
 		<h:form id="frmLista">
-			<p:dataTable id="datatable" var="g" value="#{notaController.lstNota}">
+			<p:dataTable id="datatable" var="g" value="#{notaBean.lstNota}">
 				<p:column headerText="Postulante">
 					<h:outputText value="#{g.postulante.descripcion}" />
 				</p:column>
@@ -37,13 +37,13 @@
 					<p:commandButton update=":frmLista,:frmEditar:dlgEditar"
 						oncomplete="dlgEditar.show()" icon="ui-icon-pencil" title="Editar">
 						<f:setPropertyActionListener value="#{g}"
-							target="#{notaController.nota}" />
+							target="#{notaBean.nota}" />
 					</p:commandButton>					
 					<p:commandButton update=":frmLista,:frmEliminar:dlgEliminar"
 						oncomplete="dlgEliminar.show()" icon="ui-icon-trash"
 						title="Eliminar" >
 						<f:setPropertyActionListener value="#{g}"
-							target="#{notaController.nota}" />
+							target="#{notaBean.nota}" />
 					</p:commandButton>
 				</p:column>
 
@@ -123,7 +123,7 @@
 						<p:commandButton id="confirm" value="Si"
 							update=":frmLista:datatable,growlEliminar"
 							oncomplete="dlgEliminar.hide()"
-							actionListener="#{notaController.eliminar}">
+							actionListener="#{notaBean.eliminar}">
 						</p:commandButton>	
 						<p:commandButton id="decline" value="No"
 							onclick="dlgEliminar.hide()" type="button" />

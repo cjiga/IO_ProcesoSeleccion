@@ -1,30 +1,65 @@
 package edu.upc.io.seleccion.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
 
+
+/**
+ * The persistent class for the prueba database table.
+ * 
+ */
 @Entity
-@Table(name="prueba")
-public class Prueba {
+public class Prueba implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
-	private Integer idPrueba;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String idprueba;
+
 	private String descripcion;
 
-	public Integer getIdPrueba() {
-		return idPrueba;
+	//bi-directional many-to-one association to Nota
+	@OneToMany(mappedBy="prueba")
+	private List<Nota> notas;
+
+	//bi-directional many-to-one association to Peso
+	@OneToMany(mappedBy="prueba")
+	private List<Peso> pesos;
+
+	public Prueba() {
 	}
-	public void setIdPrueba(Integer idPrueba) {
-		this.idPrueba = idPrueba;
+
+	public String getIdprueba() {
+		return this.idprueba;
 	}
+
+	public void setIdprueba(String idprueba) {
+		this.idprueba = idprueba;
+	}
+
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public List<Nota> getNotas() {
+		return this.notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public List<Peso> getPesos() {
+		return this.pesos;
+	}
+
+	public void setPesos(List<Peso> pesos) {
+		this.pesos = pesos;
+	}
+
 }

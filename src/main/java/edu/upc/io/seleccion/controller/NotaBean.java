@@ -5,21 +5,18 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import edu.upc.io.seleccion.domain.Nota;
 import edu.upc.io.seleccion.service.NotaService;
 
-@ManagedBean(name="notaController")
+@ManagedBean(name="notaBean")
 @SessionScoped
-public class IngresoNotasController {
+public class NotaBean {
 
-	@Autowired
 	private NotaService notaService;
 	private Nota nota;
 	private List<Nota> lstNota;
 	
-	public IngresoNotasController(){
+	public NotaBean(){
 		nota=new Nota();
 		lstNota=notaService.getAll();
 	}
