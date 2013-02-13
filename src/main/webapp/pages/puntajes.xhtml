@@ -1,0 +1,44 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	</h:head>
+
+	<ui:define name="content">
+		<h:form>
+			<p:commandButton value="Procesar" icon="ui-icon-document"
+				actionListener="#{puntajeBean.solveLingo}" />
+			<p:commandButton value="Mostrar" icon="ui-icon-document"
+				actionListener="#{puntajeBean.listar}" update=":frmLista" />
+		</h:form>
+		<h:form id="frmLista">
+
+			<p:dataTable id="datatable" var="g" value="#{puntajeBean.lstPuntaje}">
+				<p:column headerText="Postulante">
+					<h:outputText value="#{g.postulante}" />
+				</p:column>
+
+				<p:column headerText="Puesto">
+					<h:outputText value="#{g.puesto}" />
+				</p:column>
+				
+				<p:column headerText="Puntaje">
+					<h:outputText value="#{g.puntaje}" />
+				</p:column>
+				
+				<p:column headerText="Y">
+					<h:outputText value="#{g.y}" />
+				</p:column>
+				
+				<p:column headerText="Z">
+					<h:outputText value="#{g.z}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -13,11 +13,12 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">mysql</property>
     
-      
+    
     <mapping class="edu.upc.io.seleccion.domain.Postulante"/>
     <mapping class="edu.upc.io.seleccion.domain.Prueba"/>
     <mapping class="edu.upc.io.seleccion.domain.Puesto"/>
     <mapping class="edu.upc.io.seleccion.domain.Nota"/>
     <mapping class="edu.upc.io.seleccion.domain.Peso"/>
+    <mapping class="edu.upc.io.seleccion.domain.Puntaje"/>  
   </session-factory>
 </hibernate-configuration>
