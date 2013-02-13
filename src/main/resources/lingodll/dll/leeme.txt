@@ -1,2 +1,0 @@
-Copiar Seleccion.lng, ".bat, ".jar en C:\lingoSeleccion
-El resto de dlls copiar en la raiz de eclipse

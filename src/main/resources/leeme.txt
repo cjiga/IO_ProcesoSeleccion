@@ -1,2 +1,2 @@
 Copiar lingoseleccion en c:
-Los archivos de lingodll copiar en la raiz de eclipse
+Los dll de lingo copiar en la raiz de eclipse
