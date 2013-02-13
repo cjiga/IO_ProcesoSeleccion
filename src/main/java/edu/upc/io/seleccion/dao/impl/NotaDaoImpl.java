@@ -33,7 +33,7 @@ public class NotaDaoImpl implements NotaDao {
 	@SuppressWarnings("unchecked")
 	public List<Nota> getAll() {
 		Query query = session
-				.createQuery("select n from Nota n join fetch n.prueba join fetch n.postulante");
+				.createQuery("select n from Nota n");
 		List<Nota> result = query.list();
 		return result;
 	}

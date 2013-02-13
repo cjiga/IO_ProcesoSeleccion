@@ -1,0 +1,1 @@
+java -Djava.library.path=C:\LingoSeleccion -jar C:\LingoSeleccion\seleccionLingo.jar

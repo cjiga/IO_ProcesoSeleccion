@@ -1,0 +1,182 @@
+  LINGO  10.0.0.4 (1 MAY 06 )
+ 
+  LINDO API 4.01.36 (Apr 28 2006 14:40:41)
+ 
+  Copyright (C) 2005,2006 LINDO Systems Inc. Licensed material,
+  all rights reserved. Copying except as authorized in license
+  agreement is prohibited.
+ 
+  License location: C:\lndlng10.lic
+ 
+  Eval Use Only
+ 
+  License expires: 15 Mar 2013
+ 
+  Licensed for commercial use.
+  Branch-and-bound solver enabled.
+  Nonlinear solver enabled.
+  Barrier solver enabled.
+  Global solver enabled.
+ 
+ 
+   Parameter        Old Value     New Value
+    ECHOIN             0             1
+ 
+: TAKE seleccion.lng
+: MODEL:
+? SETS:
+? POSTULANTE;
+? PUESTO:PREFERENCIA,Z;
+? POXPU(POSTULANTE,PUESTO):PUNTAJE,Y;
+? ENDSETS
+? !FUNCION OBJETIVO:MAXIMIZAR EL PUNTAJE TOTAL DE LOS POSTULANTES SELECCIONA
+? MAX=@SUM(POXPU(i,j):PUNTAJE(i,j)*Y(i,j));
+? !RESTRICCIONES
+? UN POSTULANTE OCUPARA UN  PUESTO A LO MAS;
+? @FOR(POSTULANTE(i):@SUM(PUESTO(j):Y(i,j))<=1);
+? !PARA CADA PUESTO UN POSTULANTE;
+? @FOR(PUESTO(j):@SUM(POSTULANTE(i):Y(i,j))<=1);
+? !RESTRICCION DE PREFERENCIAS;
+? @FOR(PUESTO(j):Z(j)>=PREFERENCIA(j));
+? !RELACION ENTRE LAS VARIABLES DE DECISION;
+? @FOR(PUESTO(j):@SUM(POSTULANTE(i):Y(i,j))<=99*Z(j));
+? @FOR(PUESTO(j):@SUM(POSTULANTE(i):Y(i,j))>=1*Z(j));
+? !DECLARACION  DE LAS VARIABLES BINARIAS;
+? @FOR(PUESTO(j):@BIN(Z(j)));
+? @FOR(POXPU(i,j):@BIN(Y(i,j)));
+? DATA:
+? !LECTURA DE PARAMETROS;
+? PUESTO,PREFERENCIA=@ODBC(SELECCION,puesto,descripcion,preferencia);
+? POSTULANTE=@ODBC(SELECCION,postulante,descripcion);
+? POXPU,PUNTAJE=@ODBC(SELECCION,puntaje,postulante,puesto,puntaje);
+? !ENVIA LA SOLUCION A EXCEL;
+? @ODBC(SELECCION,puntaje,y)=Y;
+? @ODBC(SELECCION,puntaje,z)=Z;
+? ENDDATA
+? END
+: GO
+  Compiling model ...
+  Structural analysis, pass 1 ...
+  Scalarizing model ...
+  Generating nonzero matrix ...
+  Solving model ...
+  Global optimal solution found.
+  Objective value:                              340.0000
+  Extended solver steps:                               0
+  Total solver iterations:                             0
+ 
+  Running output operations ...
+ 
+    Export Summary Report
+    ---------------------
+    Transfer Method:       ODBC BASED
+    ODBC Data Source:      SELECCION
+    Data Table Name:       puntaje
+    Columns Specified:              1
+        y
+    LINGO Column Length:           25
+    Database Column Length:        25
+ 
+    Export Summary Report
+    ---------------------
+    Transfer Method:       ODBC BASED
+    ODBC Data Source:      SELECCION
+    Data Table Name:       puntaje
+    Columns Specified:              1
+        z
+    LINGO Column Length:            5
+    Database Column Length:        25
+ 
+  Building solution report ...
+ 
+                       Variable           Value        Reduced Cost
+      PREFERENCIA( PRACTICANTE)        1.000000            0.000000
+ PREFERENCIA( PROGRAMADOR_JUNIO        1.000000            0.000000
+ PREFERENCIA( PROGRAMADOR_SENIO        1.000000            0.000000
+ PREFERENCIA( PROGRAMADOR_JUNIO        0.000000            0.000000
+ PREFERENCIA( PROGRAMADOR_SENIO        0.000000            0.000000
+                Z( PRACTICANTE)        1.000000            0.000000
+         Z( PROGRAMADOR_JUNIOR)        1.000000            0.000000
+         Z( PROGRAMADOR_SENIOR)        1.000000            0.000000
+      Z( PROGRAMADOR_JUNIOR_II)        0.000000            0.000000
+      Z( PROGRAMADOR_SENIOR_II)        1.000000            0.000000
+ PUNTAJE( CARLOS_JIGA, PRACTICA        45.00000            0.000000
+ PUNTAJE( CARLOS_JIGA, PROGRAMA        85.00000            0.000000
+ PUNTAJE( CARLOS_JIGA, PROGRAMA        78.00000            0.000000
+ PUNTAJE( CESAR_ARASAKI, PRACTI        78.00000            0.000000
+ PUNTAJE( CESAR_ARASAKI, PROGRA        67.00000            0.000000
+ PUNTAJE( CESAR_ARASAKI, PROGRA        34.00000            0.000000
+ PUNTAJE( CRISTIAN_SANDIGA, PRA        74.00000            0.000000
+ PUNTAJE( CRISTIAN_SANDIGA, PRO        87.00000            0.000000
+ PUNTAJE( CRISTIAN_SANDIGA, PRO        56.00000            0.000000
+ PUNTAJE( LUIS_MU_OZ, PRACTICAN        48.00000            0.000000
+ PUNTAJE( LUIS_MU_OZ, PROGRAMAD        45.00000            0.000000
+ PUNTAJE( LUIS_MU_OZ, PROGRAMAD        78.00000            0.000000
+ PUNTAJE( ANGEL_CANCHES, PRACTI        57.00000            0.000000
+ PUNTAJE( ANGEL_CANCHES, PROGRA        87.00000            0.000000
+ PUNTAJE( ANGEL_CANCHES, PROGRA        90.00000            0.000000
+ PUNTAJE( CARLOS_JIGA, PROGRAMA        0.000000            0.000000
+ PUNTAJE( CARLOS_JIGA, PROGRAMA        32.00000            0.000000
+ PUNTAJE( CESAR_ARASAKI, PROGRA        0.000000            0.000000
+ PUNTAJE( CESAR_ARASAKI, PROGRA        67.00000            0.000000
+ PUNTAJE( CRISTIAN_SANDIGA, PRO        0.000000            0.000000
+ PUNTAJE( CRISTIAN_SANDIGA, PRO        87.00000            0.000000
+ PUNTAJE( LUIS_MU_OZ, PROGRAMAD        0.000000            0.000000
+ PUNTAJE( LUIS_MU_OZ, PROGRAMAD        45.00000            0.000000
+ PUNTAJE( ANGEL_CANCHES, PROGRA        0.000000            0.000000
+ PUNTAJE( ANGEL_CANCHES, PROGRA        87.00000            0.000000
+   Y( CARLOS_JIGA, PRACTICANTE)        0.000000           -45.00000
+ Y( CARLOS_JIGA, PROGRAMADOR_JU        1.000000           -85.00000
+ Y( CARLOS_JIGA, PROGRAMADOR_SE        0.000000           -78.00000
+ Y( CESAR_ARASAKI, PRACTICANTE)        1.000000           -78.00000
+ Y( CESAR_ARASAKI, PROGRAMADOR_        0.000000           -67.00000
+ Y( CESAR_ARASAKI, PROGRAMADOR_        0.000000           -34.00000
+ Y( CRISTIAN_SANDIGA, PRACTICAN        0.000000           -74.00000
+ Y( CRISTIAN_SANDIGA, PROGRAMAD        0.000000           -87.00000
+ Y( CRISTIAN_SANDIGA, PROGRAMAD        0.000000           -56.00000
+    Y( LUIS_MU_OZ, PRACTICANTE)        0.000000           -48.00000
+ Y( LUIS_MU_OZ, PROGRAMADOR_JUN        0.000000           -45.00000
+ Y( LUIS_MU_OZ, PROGRAMADOR_SEN        0.000000           -78.00000
+ Y( ANGEL_CANCHES, PRACTICANTE)        0.000000           -57.00000
+ Y( ANGEL_CANCHES, PROGRAMADOR_        0.000000           -87.00000
+ Y( ANGEL_CANCHES, PROGRAMADOR_        1.000000           -90.00000
+ Y( CARLOS_JIGA, PROGRAMADOR_JU        0.000000            0.000000
+ Y( CARLOS_JIGA, PROGRAMADOR_SE        0.000000           -32.00000
+ Y( CESAR_ARASAKI, PROGRAMADOR_        0.000000            0.000000
+ Y( CESAR_ARASAKI, PROGRAMADOR_        0.000000           -67.00000
+ Y( CRISTIAN_SANDIGA, PROGRAMAD        0.000000            0.000000
+ Y( CRISTIAN_SANDIGA, PROGRAMAD        1.000000           -87.00000
+ Y( LUIS_MU_OZ, PROGRAMADOR_JUN        0.000000            0.000000
+ Y( LUIS_MU_OZ, PROGRAMADOR_SEN        0.000000           -45.00000
+ Y( ANGEL_CANCHES, PROGRAMADOR_        0.000000            0.000000
+ Y( ANGEL_CANCHES, PROGRAMADOR_        0.000000           -87.00000
+ 
+                            Row    Slack or Surplus      Dual Price
+                              1        340.0000            1.000000
+                              2        0.000000            0.000000
+                              3        0.000000            0.000000
+                              4        0.000000            0.000000
+                              5        1.000000            0.000000
+                              6        0.000000            0.000000
+                              7        0.000000            0.000000
+                              8        0.000000            0.000000
+                              9        0.000000            0.000000
+                             10        1.000000            0.000000
+                             11        0.000000            0.000000
+                             12        0.000000            0.000000
+                             13        0.000000            0.000000
+                             14        0.000000            0.000000
+                             15        0.000000            0.000000
+                             16        1.000000            0.000000
+                             17        98.00000            0.000000
+                             18        98.00000            0.000000
+                             19        98.00000            0.000000
+                             20        0.000000            0.000000
+                             21        98.00000            0.000000
+                             22        0.000000            0.000000
+                             23        0.000000            0.000000
+                             24        0.000000            0.000000
+                             25        0.000000            0.000000
+                             26        0.000000            0.000000
+ 
+: QUIT

@@ -31,7 +31,7 @@ public class PesoDaoImpl implements PesoDao {
 
 	public List<Peso> getAll(int idpuesto) {
 		Query query = session
-				.createQuery("select p from Peso p join fetch p.prueba join fetch p.puesto where p.puesto.idpuesto = :id");
+				.createQuery("select p from Peso p where p.puesto.idpuesto = :id");
 		query.setParameter("id", idpuesto);
 		List<Peso> result = query.list();
 		return result;
