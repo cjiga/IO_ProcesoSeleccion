@@ -30,7 +30,7 @@
 				</p:column>
 				
 				<p:column headerText="Nota">
-					<h:outputText value="#{g.nota}" />
+					<h:outputText value="#{g.puntaje}" />
 				</p:column>
 				
 				<p:column style="width:10%; text-align:center">
@@ -61,22 +61,31 @@
 				<h:panelGrid id="pgNuevo" columns="2" cellpadding="4"
 					style="margin:0 auto;">
 
-					<h:outputText value="Descripción:" />
-					<p:inputText value="#{generoMB.genero.descripcion}" />
-
-					<h:outputText value="Estado:" />
-					<p:selectOneMenu id="estado" value="#{generoMB.genero.estado}">
+					<h:outputText value="Postulante:" />
+					<p:selectOneMenu id="cboPostulante" value="#{notaBean.nota.postulante.idpostulante}"
+						required="true" requiredMessage="Seleccione Postulante">
 						<f:selectItem itemLabel="--Selecciones--" itemValue="" />
-						<f:selectItem itemLabel="Activo" itemValue="1" />
-						<f:selectItem itemLabel="Inactivo" itemValue="0" />
+						<f:selectItems itemLabel="#{postulante.descripcion}" var="postulante" value="#{notaBean.lstPostulante}" itemValue="#{postulante.idpostulante}"></f:selectItems>
 					</p:selectOneMenu>
+
+					<h:outputText value="Prueba:" />
+					<p:selectOneMenu id="cboPrueba" value="#{notaBean.nota.prueba.idprueba}"
+						required="true" requiredMessage="Seleccione Prueba">
+						<f:selectItem itemLabel="--Selecciones--" itemValue="" />
+						<f:selectItems itemLabel="#{prueba.descripcion}" var="prueba" value="#{notaBean.lstPrueba}" itemValue="#{prueba.idprueba}"></f:selectItems>
+					</p:selectOneMenu>
+					
+					<h:outputText value="Nota:" />
+					<p:inputText value="#{notaBean.nota.puntaje}" required="true" requiredMessage="Ingrese puntaje.">
+						<f:validateDoubleRange minimum="0" maximum="100" />
+					</p:inputText>
 				</h:panelGrid>
 				<p:separator id="separator" />
-				<p:commandButton update=":lstGenero:datatable,growlNuevo,pgNuevo "
-					actionListener="#{generoMB.insertar}" oncomplete="dlgNuevo.hide()"
+				<p:commandButton update=":frmLista:datatable,growlNuevo "
+					actionListener="#{notaBean.insertar}" oncomplete="if(!args.validationFailed)dlgNuevo.hide()"
 					value=" Guardar" icon="icon-add" title="Guardar" />
-				<p:commandButton update=":lstGenero" oncomplete="dlgNuevo.hide()"
-					value="Cancelar" icon="icon-add" title="Cancelarr" />
+				<p:commandButton update=":frmLista" oncomplete="dlgNuevo.hide()"
+					value="Cancelar" icon="icon-add" title="Cancelar" />
 			</p:dialog>
 		</h:form>
 
@@ -90,29 +99,36 @@
 				<h:panelGrid id="pgEditar" columns="2" cellpadding="4"
 					style="margin:0 auto;">
 
-					<h:outputText value="Descripción:" />
-					<p:inputText value="#{generoMB.genero.descripcion}" />
-
-					<h:outputText value="Estado:" />
-					<p:selectOneMenu id="estado" value="#{generoMB.genero.estado}">
+					<h:outputText value="Postulante:" />
+					<p:selectOneMenu id="cboPostulante" value="#{notaBean.nota.postulante.idpostulante}">
 						<f:selectItem itemLabel="--Selecciones--" itemValue="" />
-						<f:selectItem itemLabel="Activo" itemValue="1" />
-						<f:selectItem itemLabel="Inactivo" itemValue="0" />
+						<f:selectItems itemLabel="#{postulante.descripcion}" var="postulante" value="#{notaBean.lstPostulante}" itemValue="#{postulante.idpostulante}"></f:selectItems>
 					</p:selectOneMenu>
+
+					<h:outputText value="Prueba:" />
+					<p:selectOneMenu id="cboPrueba" value="#{notaBean.nota.prueba.idprueba}">
+						<f:selectItem itemLabel="--Selecciones--" itemValue="" />
+						<f:selectItems itemLabel="#{prueba.descripcion}" var="prueba" value="#{notaBean.lstPrueba}" itemValue="#{prueba.idprueba}"></f:selectItems>
+					</p:selectOneMenu>
+					
+					<h:outputText value="Nota:" />
+					<p:inputText value="#{notaBean.nota.puntaje}" >
+						<f:validateDoubleRange minimum="0" maximum="100" />
+					</p:inputText>
 				</h:panelGrid>
 				<p:separator id="separator" />
 				<p:commandButton
-					update=":lstGenero:datatable,growlEditar,dlgEditar "
-					actionListener="#{generoMB.editar}" oncomplete="dlgEditar.hide()"
+					update=":frmLista:datatable,growlEditar "
+					actionListener="#{notaBean.insertar}" oncomplete="if(!args.validationFailed)dlgEditar.hide()"
 					value=" Editar" icon="icon-add" title="Editar" />
-				<p:commandButton update=":lstGenero" oncomplete="dlgEditar.hide()"
-					value="Cancelar" icon="icon-add" title="Cancelarr" />
+				<p:commandButton update=":frmLista" oncomplete="dlgEditar.hide()"
+					value="Cancelar" icon="icon-add" title="Cancelar" />
 			</p:dialog>
 		</h:form>
 
 
 		<h:form id="frmEliminar">
-			<p:dialog id="dlgEliminar" header="Eliminar Genero" severity="alert"
+			<p:dialog id="dlgEliminar" header="Eliminar Nota" severity="alert"
 				widgetVar="dlgEliminar" showEffect="explode" hideEffect="explode">
 				<p:growl id="growlEliminar" showDetail="true" sticky="true" />
 				<h:panelGrid id="displayconfirSucursal" columns="1" cellpadding="5">

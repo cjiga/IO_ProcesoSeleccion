@@ -15,9 +15,9 @@ public class Nota implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String idnota;
+	private Integer idnota;
 
-	private BigDecimal puntaje;
+	private double puntaje;
 
 	//bi-directional many-to-one association to Postulante
 	@ManyToOne
@@ -32,19 +32,19 @@ public class Nota implements Serializable {
 	public Nota() {
 	}
 
-	public String getIdnota() {
-		return this.idnota;
+	public Integer getIdnota() {
+		return idnota;
 	}
 
-	public void setIdnota(String idnota) {
+	public void setIdnota(Integer idnota) {
 		this.idnota = idnota;
 	}
 
-	public BigDecimal getPuntaje() {
+	public double getPuntaje() {
 		return this.puntaje;
 	}
 
-	public void setPuntaje(BigDecimal puntaje) {
+	public void setPuntaje(double puntaje) {
 		this.puntaje = puntaje;
 	}
 
@@ -62,6 +62,12 @@ public class Nota implements Serializable {
 
 	public void setPrueba(Prueba prueba) {
 		this.prueba = prueba;
+	}
+
+	@Override
+	public String toString() {
+		return "Nota [idnota=" + idnota + ", puntaje=" + puntaje
+				+ ", postulante=" + postulante + ", prueba=" + prueba + "]";
 	}
 
 }

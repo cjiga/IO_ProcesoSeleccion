@@ -10,5 +10,6 @@ import edu.upc.io.seleccion.domain.Nota;
 public interface NotaService {
 
 	List<Nota> getAll();
-
+	int saveOrUpdate(Nota nota);
+	public int delete(Nota nota);
 }

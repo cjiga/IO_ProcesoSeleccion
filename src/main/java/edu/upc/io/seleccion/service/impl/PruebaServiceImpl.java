@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import edu.upc.io.seleccion.dao.PruebaDao;
+import edu.upc.io.seleccion.dao.impl.NotaDaoImpl;
+import edu.upc.io.seleccion.dao.impl.PruebaDaoImpl;
 import edu.upc.io.seleccion.domain.Prueba;
 import edu.upc.io.seleccion.service.PruebaService;
 
@@ -16,19 +18,16 @@ public class PruebaServiceImpl implements PruebaService{
 	
 	private PruebaDao pruebaDao;
 	
+	public PruebaServiceImpl(){
+		pruebaDao=new PruebaDaoImpl();
+	}
 	
 	public List<Prueba> getAll() {		
 		return pruebaDao.getAll();
 	}
 
-
-	public PruebaDao getPruebaDao() {
-		return pruebaDao;
-	}
-
-
-	public void setPruebaDao(PruebaDao pruebaDao) {
-		this.pruebaDao = pruebaDao;
+	public Prueba getPrueba(Integer id) {
+		return pruebaDao.getPrueba(id);
 	}
 
 }

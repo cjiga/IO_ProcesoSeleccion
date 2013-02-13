@@ -10,5 +10,6 @@ import edu.upc.io.seleccion.domain.Prueba;
 public interface PruebaService {
 
 	public List<Prueba> getAll();
+	public Prueba getPrueba(Integer id);
 	
 }

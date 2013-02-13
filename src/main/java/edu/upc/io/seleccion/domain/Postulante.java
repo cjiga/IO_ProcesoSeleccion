@@ -15,7 +15,7 @@ public class Postulante implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String idpostulante;
+	private Integer idpostulante;
 
 	private String descripcion;
 
@@ -26,11 +26,11 @@ public class Postulante implements Serializable {
 	public Postulante() {
 	}
 
-	public String getIdpostulante() {
+	public Integer getIdpostulante() {
 		return this.idpostulante;
 	}
 
-	public void setIdpostulante(String idpostulante) {
+	public void setIdpostulante(Integer idpostulante) {
 		this.idpostulante = idpostulante;
 	}
 
@@ -50,4 +50,11 @@ public class Postulante implements Serializable {
 		this.notas = notas;
 	}
 
+	@Override
+	public String toString() {
+		return "Postulante [idpostulante=" + idpostulante + ", descripcion="
+				+ descripcion + "]";
+	}
+
+	
 }

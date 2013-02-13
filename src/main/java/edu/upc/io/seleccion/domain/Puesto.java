@@ -16,7 +16,7 @@ public class Puesto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String idpuesto;
+	private Integer idpuesto;
 
 	private String descripcion;
 
@@ -29,11 +29,11 @@ public class Puesto implements Serializable {
 	public Puesto() {
 	}
 
-	public String getIdpuesto() {
+	public Integer getIdpuesto() {
 		return this.idpuesto;
 	}
 
-	public void setIdpuesto(String idpuesto) {
+	public void setIdpuesto(Integer idpuesto) {
 		this.idpuesto = idpuesto;
 	}
 
@@ -61,4 +61,9 @@ public class Puesto implements Serializable {
 		this.pesos = pesos;
 	}
 
+	@Override
+	public String toString() {
+		return "Puesto [idpuesto=" + idpuesto + ", descripcion=" + descripcion
+				+ ", preferencia=" + preferencia + "]";
+	}
 }

@@ -15,9 +15,9 @@ public class Peso implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String idPeso;
+	private Integer idpeso;
 
-	private BigDecimal porcentaje;
+	private double porcentaje;
 
 	//bi-directional many-to-one association to Prueba
 	@ManyToOne
@@ -32,19 +32,19 @@ public class Peso implements Serializable {
 	public Peso() {
 	}
 
-	public String getIdPeso() {
-		return this.idPeso;
+	public Integer getIdpeso() {
+		return this.idpeso;
 	}
 
-	public void setIdPeso(String idPeso) {
-		this.idPeso = idPeso;
+	public void setIdpeso(Integer idpeso) {
+		this.idpeso = idpeso;
 	}
 
-	public BigDecimal getPorcentaje() {
+	public double getPorcentaje() {
 		return this.porcentaje;
 	}
 
-	public void setPorcentaje(BigDecimal porcentaje) {
+	public void setPorcentaje(double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
 

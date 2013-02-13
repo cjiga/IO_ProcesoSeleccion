@@ -9,5 +9,6 @@ public interface NotaDao {
 	
 	public int saveOrUpdate(Nota nota);
 	public List<Nota> getAll();
+	public int delete(Nota nota);
 	
 }

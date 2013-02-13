@@ -61,8 +61,8 @@ public class PuestoDaoImpl implements PuestoDao{
 		return var;
 	}
 	
-	public Postulante getPuesto(Integer id) {
-		return (Postulante)session.get(Postulante.class, id);
+	public Puesto getPuesto(Integer id) {
+		return (Puesto)session.get(Puesto.class, id);
 	}
 	
 	public List<Puesto> getAll() {

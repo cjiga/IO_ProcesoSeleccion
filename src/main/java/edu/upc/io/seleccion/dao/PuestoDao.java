@@ -10,7 +10,7 @@ public interface PuestoDao {
 	public int save(Puesto puesto);
 	public int update(Puesto puesto);
 	public int delete(Puesto puesto);
-	public Postulante getPuesto(Integer id);
+	public Puesto getPuesto(Integer id);
 	public List<Puesto> getAll();
 
 }

@@ -15,7 +15,7 @@ public class Prueba implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String idprueba;
+	private Integer idprueba;
 
 	private String descripcion;
 
@@ -30,11 +30,11 @@ public class Prueba implements Serializable {
 	public Prueba() {
 	}
 
-	public String getIdprueba() {
+	public Integer getIdprueba() {
 		return this.idprueba;
 	}
 
-	public void setIdprueba(String idprueba) {
+	public void setIdprueba(Integer idprueba) {
 		this.idprueba = idprueba;
 	}
 
@@ -62,4 +62,8 @@ public class Prueba implements Serializable {
 		this.pesos = pesos;
 	}
 
+	@Override
+	public String toString() {
+		return "Prueba [idprueba=" + idprueba + ", descripcion=" + descripcion + "]";
+	}
 }

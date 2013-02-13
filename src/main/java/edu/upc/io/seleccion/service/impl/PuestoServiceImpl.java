@@ -32,7 +32,7 @@ public class PuestoServiceImpl implements PuestoService{
 		return puestoDao.delete(puesto);
 	}
 
-	public Postulante getPuesto(Integer id) {
+	public Puesto getPuesto(Integer id) {
 		// TODO Auto-generated method stub
 		return puestoDao.getPuesto(id);
 	}
